@@ -6,25 +6,13 @@ const http = require("http"),
     dir = "public/",
     port = 3000;
 
-const appdata = [{ complete: "true", content: "Love my cat!" }];
+const appdata = [
+    { complete: "true", content: "Love my cat!" },
+    { complete: "true", content: "Love my dog!" },
+    { complete: "true", content: "Love myself!" }
+];
 
 const server = http.createServer(function (request, response) {
-  // switch (request.url) {
-  //   case "/":
-  //     sendFile(response, "index.html");
-  //     break;
-  //   case "/index.html":
-  //     sendFile(response, "index.html");
-  //     break;
-  //   case "/style.css":
-  //     sendFile(response, "css/style.css");
-  //     break;
-  //   case "/script.js":
-  //     sendFile(response, "js/script.js");
-  //     break;
-  //   default:
-  //     response.end("404 Error: File Not Found");
-  // }
   if (request.method === "GET") {
     handleGet(request, response);
   } else if (request.method === "POST") {
@@ -53,39 +41,10 @@ const handlePost = function (request, response) {
   request.on( 'end', function() {
 
     let data = JSON.parse(dataString);
+
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end(JSON.stringify(data));
   })
-//   if (request.url === "/submit") {
-//     request.on("end", function () {
-//       console.log(JSON.parse(dataString).DOB);
-//       let data1 = JSON.parse(dataString),
-//         state = data1.complete,
-//         inputs = data1.content;
-
-//       console.log(data1);
-//       appdata.push(data1);
-
-//       response.writeHead(200, "OK", { "Content-Type": "text/plain" });
-//       response.write(JSON.stringify(appdata));
-//       console.log(appdata);
-//       response.end();
-//     });
-//   } else if (request.url === "/delete") {
-//     request.on("end", function () {
-//       let data2 = JSON.parse(dataString),
-//         state = data2.complete,
-//         inputs = data2.content;
-
-//       console.log(data2);
-//       appdata.remove(inputs);
-
-//       response.writeHead(200, "OK", { "Content-Type": "text/plain" });
-//       response.write(JSON.stringify(appdata));
-//       console.log(appdata);
-//       response.end();
-//     });
-//   }
 };
 
 const sendFile = function (response, filename) {
