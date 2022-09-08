@@ -1,1 +1,117 @@
-/*Style your own assignment! This is fun! */
+body {
+  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.4em;
+  background: #f5f5f5;
+  color: #4d4d4d;
+  min-width: 230px;
+  max-width: 550px;
+  margin: 0 auto;
+  font-weight: 300;
+}
+
+.item_todo input[type="text"] {
+  display: none;
+}
+
+.item_todo {
+  padding: 15px 15px 15px 60px;
+}
+
+.item_input {
+  padding: 16px 16px 16px 60px;
+  border-bottom: 1px solid #ededed;
+}
+
+.item_input input[type="text"] {
+  width: 80%;
+  border-width: 0px;
+  outline: none;
+  font: 20px "Gloria Hallelujah", Helvetica, Arial, sans-serif;
+  color: #4d4d4d;
+}
+
+.item_input input[type="text"]::placeholder {
+  color: #d9d9d9;
+  font: 16px;
+  font-family: "Gloria Hallelujah", cursive;
+  font-weight: 300;
+}
+
+.dropdown_toggler {
+  background: #ffffff;
+  margin: 100px 0 40px 0;
+  position: relative;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  position: absolute;
+  top: -130px;
+  font-size: 50px;
+  font-weight: 100;
+  padding-left: 30%;
+  color: rgba(175, 47, 47, 0.25);
+  text-align: center;
+  font: 44px "Rock Salt", cursive;
+  margin: 30px;
+  font-weight: 100;
+}
+
+.item_todo button {
+  display: none;
+}
+
+.item_todo:hover button {
+  display: inline-block;
+  position: absolute;
+  margin-left: 5px;
+}
+
+.item_todo.complete span {
+  text-decoration: line-through;
+  color: #d9d9d9;
+}
+
+.item_todo.editing span {
+  display: none;
+}
+
+.item_todo.editing input[type="text"] {
+  display: inline-block;
+}
+
+ul {
+  padding-inline-start: 0;
+  margin-block-start: 0;
+  padding-top: 0;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.state {
+  padding-left: 25px;
+  padding-bottom: 15px;
+}
+
+#todo_list:empty + .state {
+  display: none;
+}
+
+ul.complete li:not(.complete) {
+  display: none;
+}
+
+#todo_list li {
+  list-style: none;
+  font-size: 24px;
+  border-bottom: 1px solid #ededed;
+}
+
+ul.incomplete li.complete {
+  display: none;
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
