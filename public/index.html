@@ -1,55 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <title>CS4241 Assignment 2-TODO List</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Gloria+Hallelujah&family=Rock+Salt&display=swap"
-      rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Gloria+Hallelujah&family=Rock+Salt&display=swap"
+            rel="stylesheet"
     />
-  </head>
+</head>
 
-  <div class="dropdown_toggler">
+<div class="dropdown_toggler">
     <h2>TODO</h2>
     <div class="item_input">
-      <input type="checkbox" id="select_all_toggler" />
-      <input
-        type="text"
-        id="input"
-        placeholder="Press 'ENTER' to add in list"
-      />
+        <input type="checkbox" id="select_all_toggler" />
+        <input
+                type="text"
+                id="input"
+                placeholder="Press 'ENTER' to add in list"
+        />
     </div>
     <ul id="todo_list" class="all"></ul>
 
     <div class="state">
-      <span class="counter">to finish</span>
-      <span id="classify_toggler">
+        <span class="counter">to finish</span>
+        <span id="classify_toggler">
         <label
-          ><input type="radio" checked name="selected" value="all" />All</label
+        ><input type="radio" checked name="selected" value="all" />All</label
         >
         <label
-          ><input
-            type="radio"
-            name="selected"
-            value="incomplete"
-          />Incomplete</label
+        ><input
+                type="radio"
+                name="selected"
+                value="incomplete"
+        />Incomplete</label
         >
         <label
-          ><input
-            type="radio"
-            name="selected"
-            value="complete"
-          />Complete</label
+        ><input
+                type="radio"
+                name="selected"
+                value="complete"
+        />Complete</label
         >
       </span>
-      <button id="delete">delete</button>
+        <button class = "delBtn" id="delete">delete</button>
     </div>
-  </div>
-  <script src="js/scripts.js"></script>
-  <script type="module">
+</div>
+<script src="js/scripts.js"></script>
+<script type="module">
     import mime from "https://cdn.skypack.dev/mime";
-  </script>
+</script>
 </html>

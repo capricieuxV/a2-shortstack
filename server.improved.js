@@ -1,31 +1,30 @@
-const appdata = [{ complete: "false", content: "Love my cat!" }];
-
 const http = require("http"),
     fs = require("fs"),
     // IMPORTANT: you must run `npm install` in the directory for this assignment
     // to install the mime library used in the following line of code
     mime = require("mime"),
-    dir = "public",
+    dir = "public/",
     port = 3000;
 
-const server = http.createServer(function (request, response) {
-  switch( request.url ) {
-    case '/':
-      sendFile( response, 'index.html' )
-      break
-    case '/index.html':
-      sendFile( response, 'index.html' )
-      break
-    case '/style.css':
-      sendFile( response, 'css/style.css' )
-      break
-    case '/script.js':
-      sendFile( response, 'js/script.js' )
-      break
-    default:
-      response.end( '404 Error: File Not Found' )
-  }
+const appdata = [{ complete: "true", content: "Love my cat!" }];
 
+const server = http.createServer(function (request, response) {
+  // switch (request.url) {
+  //   case "/":
+  //     sendFile(response, "index.html");
+  //     break;
+  //   case "/index.html":
+  //     sendFile(response, "index.html");
+  //     break;
+  //   case "/style.css":
+  //     sendFile(response, "css/style.css");
+  //     break;
+  //   case "/script.js":
+  //     sendFile(response, "js/script.js");
+  //     break;
+  //   default:
+  //     response.end("404 Error: File Not Found");
+  // }
   if (request.method === "GET") {
     handleGet(request, response);
   } else if (request.method === "POST") {
@@ -38,6 +37,7 @@ const handleGet = function (request, response) {
 
   if (request.url === "/") {
     sendFile(response, "public/index.html");
+    console.log(appdata);
   } else {
     sendFile(response, filename);
   }
@@ -50,36 +50,42 @@ const handlePost = function (request, response) {
     dataString += data;
   });
 
-  if (request.url === "/submit") {
-    request.on("end", function () {
-      console.log(JSON.parse(dataString).DOB);
-      let data1 = JSON.parse(dataString);
-      // state = data1.complete,
-      // inputs = data1.content;
+  request.on( 'end', function() {
 
-      console.log(data1);
-      // appdata.push(data1);
+    let data = JSON.parse(dataString);
+    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+    response.end(JSON.stringify(data));
+  })
+//   if (request.url === "/submit") {
+//     request.on("end", function () {
+//       console.log(JSON.parse(dataString).DOB);
+//       let data1 = JSON.parse(dataString),
+//         state = data1.complete,
+//         inputs = data1.content;
 
-      response.writeHead(200, "OK", { "Content-Type": "text/plain" });
-      response.write(JSON.stringify(appdata));
-      console.log(appdata);
-      response.end();
-    });
-  } else if (request.url === "/delete") {
-    request.on("end", function () {
-      let data2 = JSON.parse(dataString);
-      // state = data2.complete,
-      // inputs = data2.content;
+//       console.log(data1);
+//       appdata.push(data1);
 
-      console.log(data2);
-      // appdata.remove(inputs);
+//       response.writeHead(200, "OK", { "Content-Type": "text/plain" });
+//       response.write(JSON.stringify(appdata));
+//       console.log(appdata);
+//       response.end();
+//     });
+//   } else if (request.url === "/delete") {
+//     request.on("end", function () {
+//       let data2 = JSON.parse(dataString),
+//         state = data2.complete,
+//         inputs = data2.content;
 
-      response.writeHead(200, "OK", { "Content-Type": "text/plain" });
-      response.write(JSON.stringify(appdata));
-      console.log(appdata);
-      response.end();
-    });
-  }
+//       console.log(data2);
+//       appdata.remove(inputs);
+
+//       response.writeHead(200, "OK", { "Content-Type": "text/plain" });
+//       response.write(JSON.stringify(appdata));
+//       console.log(appdata);
+//       response.end();
+//     });
+//   }
 };
 
 const sendFile = function (response, filename) {
@@ -91,6 +97,7 @@ const sendFile = function (response, filename) {
       // status code: https://httpstatuses.com
       response.writeHeader(200, { "Content-Type": type });
       response.end(content);
+    } else {
       // file not found, error code 404
       response.writeHeader(404);
       response.end("404 Error: File Not Found");

@@ -49,34 +49,11 @@ clearBtn.onclick = (e) => {
   tobeDeleted.forEach((it) => {
     todoList.removeChild(it);
   });
-
-  let item = document.getElementById("delete");
-  let json = {
-    id: "delete",
-  };
-  let body = JSON.stringify(json);
-  clearBtn.style.display = "none";
-
-  fetch("/delete", {
-    method: "POST",
-    body,
-  }).then(async function (response) {
-    if (response.status === 200) {
-      alert("clear successfully");
-    } else {
-      alert("issue found");
-    }
-    let responseInfo = await response.json();
-    refresh(responseInfo);
-    console.log(responseInfo);
-  });
-
-  return false;
 };
 
 function setActions() {
   let incompletes = todoList.querySelectorAll(
-    "input:first-child:not(:checked)"
+      "input:first-child:not(:checked)"
   );
   let complete_item = todoList.querySelectorAll("input:first-child:checked");
   if (incompletes.length) {
@@ -159,24 +136,6 @@ function add(todo) {
     todoList.append(li);
     setActions();
   }
-
-  let status = document.querySelector(".state");
-  let content = document.querySelector("#input");
-  let json = {
-    complete: status.value,
-    content: content.value,
-  };
-  let body = JSON.stringify(json);
-  fetch("/submit", {
-    method: "POST",
-    body,
-  }).then(async function (response) {
-    let responseInfo = await response.json();
-    refresh(responseInfo);
-    console.log(responseInfo);
-  });
-
-  return false;
 }
 
 function refresh() {
